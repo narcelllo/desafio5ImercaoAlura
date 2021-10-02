@@ -19,12 +19,6 @@ body {
   color: #ffffff;
   margin: 0 0 5px;
 }
-/* .listaNomes {
-  color: #ffffff;
- /*  margin: 0 0 5px;
-  margin: 10px;
-  max-height: 250px;  
-}  */
 
 .page-subtitle {
   color: #ffffff;
@@ -41,13 +35,6 @@ body {
   top: 10px;
   right: 10px;
 }
-
-/* #listaFilmes img {
-  margin: 10px;
-  max-height: 250px;
-  color: #ffffff;
-  display: flex;
-} */
 
 .form-wrapper {
   margin: 0 0 15px;
@@ -104,3 +91,16 @@ body {
   justify-content:center;
   color: white;
   }
+
+.listaFilme div button {
+  border: 0;
+  color: #ffffff;
+  background: #da1e26;
+  font-weight: bold;
+  padding: 15px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}

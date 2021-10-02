@@ -11,8 +11,9 @@ function adicionarFilme() {
     if (filmeFavorito.endsWith(".jpg")) {
         let filme = { id: listaFilmes.length + 1, url: filmeFavorito, nome: filmeNome }
         listaFilmes.push(filme);
-        /* console.log(listaFilmes); */
+        
         listaFilmesNaTela(filme);
+
 
     } else {
         alert("Endereço de filme inválido");
@@ -24,8 +25,8 @@ function adicionarFilme() {
 function listaFilmesNaTela(filme) {
     var elementoListaFilmes = document.getElementById("listaFilmes");
 
-    var elementoFilmeFavorito = "<div id='" + filme.id + "'><img src=" + filme.url + "><h3>" + filme.nome +
-        "</h3></div>";
+    var elementoFilmeFavorito = "<div id='" + filme.id + "'><img src=" + filme.url + "><h3>" + filme.nome + " ID: " 
+    + filme.id + "</h3><button onClick='btnApagaFilme(" + filme.id + ")'>Apagar Filme</button></div>";
 
     elementoListaFilmes.innerHTML += elementoFilmeFavorito;
 }
@@ -51,3 +52,12 @@ function apagaFilme() {
     document.getElementById("apagaFilme").value = "";
 }
 
+function btnApagaFilme(id) {
+    let lista = Array.from(document.getElementById("listaFilmes").children);
+    lista.forEach(el => {
+        if (el.id == id) {
+            el.remove()
+            }
+    })
+  
+}
