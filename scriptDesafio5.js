@@ -8,25 +8,37 @@ function adicionarFilme() {
     var filmeFavorito = document.getElementById("filme").value;
     var filmeNome = document.getElementById("nomeFilme").value;
 
-    if (filmeFavorito.endsWith(".jpg")) {
-        let filme = { id: listaFilmes.length + 1, url: filmeFavorito, nome: filmeNome }
-        listaFilmes.push(filme);
-        
-        listaFilmesNaTela(filme);
+    let invalido = false
+    listaFilmes.forEach(el => { 
+        if (el.url == filmeFavorito) {
+            alert("Filme já cadastrado!");
+            invalido = true;
+        }
+    })
+    
+    if (invalido == false) {
+      
+        if (filmeFavorito.endsWith(".jpg")) {
+            let filme = { id: listaFilmes.length + 1, url: filmeFavorito, nome: filmeNome }
+            listaFilmes.push(filme);
 
+            listaFilmesNaTela(filme);
 
-    } else {
-        alert("Endereço de filme inválido");
+        } else {
+            alert("Endereço de filme inválido");
+        }
     }
     document.getElementById("filme").value = "";
     document.getElementById("nomeFilme").value = "";
+
+
 }
 
 function listaFilmesNaTela(filme) {
     var elementoListaFilmes = document.getElementById("listaFilmes");
 
-    var elementoFilmeFavorito = "<div id='" + filme.id + "'><img src=" + filme.url + "><h3>" + filme.nome + " ID: " 
-    + filme.id + "</h3><button onClick='btnApagaFilme(" + filme.id + ")'>Apagar Filme</button></div>";
+    var elementoFilmeFavorito = "<div id='" + filme.id + "'><img src=" + filme.url + "><h3>" + filme.nome + " ID: "
+        + filme.id + "</h3><button onClick='btnApagaFilme(" + filme.id + ")'>Apagar Filme</button></div>";
 
     elementoListaFilmes.innerHTML += elementoFilmeFavorito;
 }
@@ -46,10 +58,11 @@ function apagaFilme() {
             invalido = false
         }
     })
-    if(invalido == true) {
+    if (invalido == true) {
         alert("ID invalido")
     }
     document.getElementById("apagaFilme").value = "";
+
 }
 
 function btnApagaFilme(id) {
@@ -57,7 +70,13 @@ function btnApagaFilme(id) {
     lista.forEach(el => {
         if (el.id == id) {
             el.remove()
-            }
+        }
     })
-  
+
 }
+/* 
+listaFilmes = listaFilmes.filter(filme => { 
+    if(filme.id != 2){
+        return filme;
+    }
+}) */
