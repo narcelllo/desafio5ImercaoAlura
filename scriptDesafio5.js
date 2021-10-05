@@ -9,15 +9,23 @@ function adicionarFilme() {
     var filmeNome = document.getElementById("nomeFilme").value;
 
     let invalido = false
-    listaFilmes.forEach(el => { 
+    listaFilmes.forEach(el => {
         if (el.url == filmeFavorito) {
-            alert("Filme já cadastrado!");
+            alert("Url já cadastrado!");
             invalido = true;
         }
     })
-    
+
+
+    listaFilmes.forEach(el => {
+        if (el.nome == filmeNome) {
+            alert("Nome já cadastrado!");
+            invalido = true;
+        }
+    })
+
     if (invalido == false) {
-      
+
         if (filmeFavorito.endsWith(".jpg")) {
             let filme = { id: listaFilmes.length + 1, url: filmeFavorito, nome: filmeNome }
             listaFilmes.push(filme);
@@ -46,7 +54,6 @@ function listaFilmesNaTela(filme) {
 listaFilmes.forEach(filme => {
     listaFilmesNaTela(filme);
 })
-/* Array.from(document.getElementById("listaFilmes").children).forEach(el =>{if(el.id == 2){el.remove()}}) */
 
 function apagaFilme() {
     let id = document.getElementById("apagaFilme").value;
@@ -58,9 +65,15 @@ function apagaFilme() {
             invalido = false
         }
     })
+
     if (invalido == true) {
         alert("ID invalido")
     }
+    listaFilmes = listaFilmes.filter(filme => {
+        if (filme.id != id) {
+            return filme;
+        }
+    })
     document.getElementById("apagaFilme").value = "";
 
 }
@@ -73,10 +86,9 @@ function btnApagaFilme(id) {
         }
     })
 
+    listaFilmes = listaFilmes.filter(filme => {
+        if (filme.id != id) {
+            return filme;
+        }
+    })
 }
-/* 
-listaFilmes = listaFilmes.filter(filme => { 
-    if(filme.id != 2){
-        return filme;
-    }
-}) */
